@@ -51,7 +51,7 @@ sleep 1
 if (sudo apex-macros enable); then
     # configure macro keys
     sudo cp '90-apex.hwdb' '/etc/udev/hwdb.d/90-apex.hwdb'
-    sudo udevadm hwdb --update
+    sudo systemd-hwdb update
     sudo udevadm control --reload
 
     echo 'The macro keys were successfully enabled.'

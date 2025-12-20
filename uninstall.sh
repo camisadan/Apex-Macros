@@ -11,7 +11,7 @@ if [ -f "$INSTALLPREFIX/apex-macros" ]; then
 
     if [ -f '/etc/udev/hwdb.d/90-apex.hwdb' ]; then
         sudo rm -v '/etc/udev/hwdb.d/90-apex.hwdb'
-        sudo udevadm hwdb --update
+        sudo systemd-hwdb update
         sudo udevadm control --reload
     fi
 

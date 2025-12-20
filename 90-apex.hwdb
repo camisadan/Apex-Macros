@@ -1,5 +1,5 @@
 # 1) Place this to /etc/udev/hwdb.d/90-apex.hwdb
-# 2) sudo udevadm hwdb --update
+# 2) sudo systemd-hwdb update
 # 3) sudo udevadm control --reload
 
 #keyboard:usb:v1038p120[02]*
