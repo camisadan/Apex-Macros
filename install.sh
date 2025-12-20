@@ -14,11 +14,26 @@ sleep 1
 echo 'Installing dependencies...'
 sleep 2
 
-if (sudo apt install -y gcc make libhidapi-dev); then
-    echo 'Dependencies successfully installed'
-    sleep 2
+if command -v apt >/dev/null 2>&1; then
+    # Debian / Ubuntu
+    if (sudo apt install -y gcc make libhidapi-dev); then
+        echo 'Dependencies successfully installed'
+        sleep 2
+    else
+        echo 'Dependencies could not be installed'
+        exit 1
+    fi
+elif command -v pacman >/dev/null 2>&1; then
+    # Arch Linux / CachyOS
+    if (sudo pacman -S --needed --noconfirm base-devel hidapi evtest); then
+        echo 'Dependencies successfully installed'
+        sleep 2
+    else
+        echo 'Dependencies could not be installed'
+        exit 1
+    fi
 else
-    echo 'Dependencies could not be installed'
+    echo 'Error: Neither apt nor pacman found. Please install dependencies manually (gcc, make, hidapi).'
     exit 1
 fi
 
@@ -51,7 +66,11 @@ sleep 1
 if (sudo apex-macros enable); then
     # configure macro keys
     sudo cp '90-apex.hwdb' '/etc/udev/hwdb.d/90-apex.hwdb'
-    sudo udevadm hwdb --update
+    if command -v systemd-hwdb >/dev/null 2>&1; then
+        sudo systemd-hwdb update
+    else
+        sudo udevadm hwdb --update
+    fi
     sudo udevadm control --reload
 
     echo 'The macro keys were successfully enabled.'

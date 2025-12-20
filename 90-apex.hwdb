@@ -1,5 +1,5 @@
 # 1) Place this to /etc/udev/hwdb.d/90-apex.hwdb
-# 2) sudo udevadm hwdb --update
+# 2) sudo systemd-hwdb update (or sudo udevadm hwdb --update on older systems)
 # 3) sudo udevadm control --reload
 
 #keyboard:usb:v1038p120[02]*
@@ -24,6 +24,8 @@ evdev:input:b0003v1038p120[0268A]*
  KEYBOARD_KEY_0700f0=kpleftparen
  KEYBOARD_KEY_0700f1=kprightparen
 # M Keys (top)
+# Note: F13-F24 (scancodes 0700f4-0700ff) often map to XF86LaunchX keys in X11/Wayland.
+# This is expected behavior; use input-remapper or xbindkeys to handle them.
  KEYBOARD_KEY_0700f4=f13
  KEYBOARD_KEY_0700f5=f14
  KEYBOARD_KEY_0700f6=f15

@@ -33,8 +33,14 @@ following steps, if you do not want to use the installation script for some reas
 the manual commands instead:
 
  * installation of the dependencies
-   ```
-   sudo apt install -y gcc make libhidapi-dev
+   The script automatically detects your distribution:
+   - **Debian/Ubuntu**: Installs `gcc`, `make`, `libhidapi-dev` using `apt`.
+   - **Arch/CachyOS**: Installs `base-devel`, `hidapi`, `evtest` using `pacman`.
+   ```bash
+   # The script will run the appropriate command for you:
+   # sudo apt install -y gcc make libhidapi-dev
+   # OR
+   # sudo pacman -S --needed --noconfirm base-devel hidapi evtest
    ```
 
  * compiling of Apex-Macros
@@ -80,10 +86,18 @@ or to disable them, run:
 # Macro Keys Configuration
 
 The macro keys should be detected by the system if `sudo apex-macros enable` has been successfully
-executed. To verify this, open a terminal and run (assuming xev is installed on your system which
-at least should hold for all ubuntu-based distributions):
+executed. To verify this, use a tool to check key events:
 
+*   **Modern Systems / Wayland (Recommended)**: Use `evtest`.
+    *   **Arch/CachyOS**: Installed automatically by the script.
+    *   **Debian/Ubuntu**: Install manually: `sudo apt install evtest`
+    ```bash
+    sudo evtest
+    ```
+*   **Legacy / X11**: You can also use `xev`.
+    ```bash
     xev
+    ```
 
 The terminal should notify about key press events as soon as the macro keys are pressed. Further,
 some keys are bind to predefined multimedia actions, they should already be usable in your media
@@ -91,22 +105,39 @@ player (VLC for instance). There might be some other keys that are mapped to the
 Hence, it is only possible to assign an action to all of them, but not a different action for
 each one. This can only be changed by modifying the `90-apex.hwdb` file accordingly.
 
-To map custom commands to the macro keys, please use an additional tool, for instance XBindKeys is
-quite popular and optionally also offers a graphical user interface to do so. Apex-Macros' task is
-just to enable the respective key press events, but not to define individual actions for them. To
-install XBindKeys on a Debian-based system (e.g. any ubuntu-based one), run:
+## Configuring Macro Actions
 
-    sudo apt install -y xbindkeys
+To map custom commands to the macro keys, you need an external tool.
 
-Additionally, you may want to use the graphical user interface, which can be installed by:
+### For Wayland Users (CachyOS / KDE Plasma / GNOME)
+`xbindkeys` is designed for X11 and **does not work reliably on Wayland**. Instead, you should use:
 
-    sudo apt install -y xbindkeys-config
+1.  **input-remapper** (Recommended): A powerful GUI tool to map buttons to macros, keys, or commands. It works seamlessly on both Wayland and X11.
+    ```bash
+    # Install from AUR (using yay or paru)
+    paru -S input-remapper-git
+    # Start the service
+    sudo systemctl enable --now input-remapper
+    ```
 
-XBindKeys uses a configuration file .xbindkeysrc, located in your home directory, that can either
-be modified using a text editor or using xbindkeys-config; both methods are supporting the Apex
-macro keys as soon as they have been activated using `apex-macros enable`. For further information
-about the configuration options of XBindKeys please refer to XBindKeys tutorials or documentations.
-However, if you have any problems or questions, feel free to report an issue.
+2.  **Desktop Environment Shortcuts**:
+    - **KDE Plasma**: Go to *System Settings* -> *Shortcuts* -> *Custom Shortcuts*. You can create new global shortcuts and press the macro key to bind it.
+
+### For X11 Users
+If you are still using X11, `xbindkeys` remains a popular option.
+
+To install XBindKeys:
+
+*   **Debian/Ubuntu**:
+    ```bash
+    sudo apt install -y xbindkeys xbindkeys-config
+    ```
+
+*   **Arch Linux**:
+    ```bash
+    sudo pacman -S xbindkeys
+    paru -S xbindkeys-config # Optional GUI from AUR (use paru, yay, etc.)
+    ```
 
 
 # Autostart
