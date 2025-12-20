@@ -14,7 +14,7 @@ sleep 1
 echo 'Installing dependencies...'
 sleep 2
 
-if (sudo pacman -S --needed --noconfirm base-devel hidapi); then
+if (sudo pacman -S --needed --noconfirm base-devel hidapi evtest); then
     echo 'Dependencies successfully installed'
     sleep 2
 else

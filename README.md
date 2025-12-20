@@ -80,10 +80,9 @@ or to disable them, run:
 # Macro Keys Configuration
 
 The macro keys should be detected by the system if `sudo apex-macros enable` has been successfully
-executed. To verify this, open a terminal and run (assuming xev is installed on your system which
-at least should hold for all ubuntu-based distributions):
+executed. To verify this, open a terminal and run `evtest` (needs to be installed first). This tool works reliably on both X11 and Wayland (common on CachyOS/KDE Plasma).
 
-    xev
+    sudo evtest
 
 The terminal should notify about key press events as soon as the macro keys are pressed. Further,
 some keys are bind to predefined multimedia actions, they should already be usable in your media
