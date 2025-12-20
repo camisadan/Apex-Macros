@@ -90,22 +90,36 @@ player (VLC for instance). There might be some other keys that are mapped to the
 Hence, it is only possible to assign an action to all of them, but not a different action for
 each one. This can only be changed by modifying the `90-apex.hwdb` file accordingly.
 
-To map custom commands to the macro keys, please use an additional tool, for instance XBindKeys is
-quite popular and optionally also offers a graphical user interface to do so. Apex-Macros' task is
-just to enable the respective key press events, but not to define individual actions for them. To
-install XBindKeys on CachyOS/Arch, run:
+## Configuring Macro Actions
 
-    sudo pacman -S xbindkeys
+To map custom commands to the macro keys, you need an external tool.
 
-Additionally, you may want to use the graphical user interface, which can be installed from the AUR (using paru as you have it installed):
+### For Wayland Users (CachyOS / KDE Plasma / GNOME)
+`xbindkeys` is designed for X11 and **does not work reliably on Wayland**. Instead, you should use:
 
-    paru -S xbindkeys-config
+1.  **input-remapper** (Recommended): A powerful GUI tool to map buttons to macros, keys, or commands. It works seamlessly on both Wayland and X11.
+    ```bash
+    # Install from AUR
+    paru -S input-remapper-git
+    # Start the service
+    sudo systemctl enable --now input-remapper
+    ```
 
-XBindKeys uses a configuration file .xbindkeysrc, located in your home directory, that can either
-be modified using a text editor or using xbindkeys-config; both methods are supporting the Apex
-macro keys as soon as they have been activated using `apex-macros enable`. For further information
-about the configuration options of XBindKeys please refer to XBindKeys tutorials or documentations.
-However, if you have any problems or questions, feel free to report an issue.
+2.  **Desktop Environment Shortcuts**:
+    - **KDE Plasma**: Go to *System Settings* -> *Shortcuts* -> *Custom Shortcuts*. You can create new global shortcuts and press the macro key to bind it.
+
+### For X11 Users
+If you are still using X11, `xbindkeys` remains a popular option.
+
+To install XBindKeys on Arch:
+```bash
+sudo pacman -S xbindkeys
+```
+
+Additionally, for a GUI configuration tool (via AUR):
+```bash
+paru -S xbindkeys-config
+```
 
 
 # Autostart
