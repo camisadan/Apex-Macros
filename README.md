@@ -34,7 +34,7 @@ the manual commands instead:
 
  * installation of the dependencies
    ```
-   sudo apt install -y gcc make libhidapi-dev
+   sudo pacman -S --needed --noconfirm base-devel hidapi
    ```
 
  * compiling of Apex-Macros
