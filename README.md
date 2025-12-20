@@ -88,7 +88,9 @@ or to disable them, run:
 The macro keys should be detected by the system if `sudo apex-macros enable` has been successfully
 executed. To verify this, use a tool to check key events:
 
-*   **Modern Systems / Wayland (Recommended)**: Use `evtest` (installed automatically on Arch/CachyOS by the script).
+*   **Modern Systems / Wayland (Recommended)**: Use `evtest`.
+    *   **Arch/CachyOS**: Installed automatically by the script.
+    *   **Debian/Ubuntu**: Install manually: `sudo apt install evtest`
     ```bash
     sudo evtest
     ```
@@ -112,7 +114,7 @@ To map custom commands to the macro keys, you need an external tool.
 
 1.  **input-remapper** (Recommended): A powerful GUI tool to map buttons to macros, keys, or commands. It works seamlessly on both Wayland and X11.
     ```bash
-    # Install from AUR
+    # Install from AUR (using yay or paru)
     paru -S input-remapper-git
     # Start the service
     sudo systemctl enable --now input-remapper
@@ -134,7 +136,7 @@ To install XBindKeys:
 *   **Arch Linux**:
     ```bash
     sudo pacman -S xbindkeys
-    paru -S xbindkeys-config # Optional GUI from AUR
+    paru -S xbindkeys-config # Optional GUI from AUR (use paru, yay, etc.)
     ```
 
 
