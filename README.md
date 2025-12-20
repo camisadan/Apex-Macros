@@ -33,8 +33,14 @@ following steps, if you do not want to use the installation script for some reas
 the manual commands instead:
 
  * installation of the dependencies
-   ```
-   sudo pacman -S --needed --noconfirm base-devel hidapi
+   The script automatically detects your distribution:
+   - **Debian/Ubuntu**: Installs `gcc`, `make`, `libhidapi-dev` using `apt`.
+   - **Arch/CachyOS**: Installs `base-devel`, `hidapi`, `evtest` using `pacman`.
+   ```bash
+   # The script will run the appropriate command for you:
+   # sudo apt install -y gcc make libhidapi-dev
+   # OR
+   # sudo pacman -S --needed --noconfirm base-devel hidapi evtest
    ```
 
  * compiling of Apex-Macros
@@ -80,9 +86,16 @@ or to disable them, run:
 # Macro Keys Configuration
 
 The macro keys should be detected by the system if `sudo apex-macros enable` has been successfully
-executed. To verify this, open a terminal and run `evtest` (needs to be installed first). This tool works reliably on both X11 and Wayland (common on CachyOS/KDE Plasma).
+executed. To verify this, use a tool to check key events:
 
+*   **Modern Systems / Wayland (Recommended)**: Use `evtest` (installed automatically on Arch/CachyOS by the script).
+    ```bash
     sudo evtest
+    ```
+*   **Legacy / X11**: You can also use `xev`.
+    ```bash
+    xev
+    ```
 
 The terminal should notify about key press events as soon as the macro keys are pressed. Further,
 some keys are bind to predefined multimedia actions, they should already be usable in your media
@@ -111,15 +124,18 @@ To map custom commands to the macro keys, you need an external tool.
 ### For X11 Users
 If you are still using X11, `xbindkeys` remains a popular option.
 
-To install XBindKeys on Arch:
-```bash
-sudo pacman -S xbindkeys
-```
+To install XBindKeys:
 
-Additionally, for a GUI configuration tool (via AUR):
-```bash
-paru -S xbindkeys-config
-```
+*   **Debian/Ubuntu**:
+    ```bash
+    sudo apt install -y xbindkeys xbindkeys-config
+    ```
+
+*   **Arch Linux**:
+    ```bash
+    sudo pacman -S xbindkeys
+    paru -S xbindkeys-config # Optional GUI from AUR
+    ```
 
 
 # Autostart
