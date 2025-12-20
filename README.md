@@ -93,13 +93,13 @@ each one. This can only be changed by modifying the `90-apex.hwdb` file accordin
 To map custom commands to the macro keys, please use an additional tool, for instance XBindKeys is
 quite popular and optionally also offers a graphical user interface to do so. Apex-Macros' task is
 just to enable the respective key press events, but not to define individual actions for them. To
-install XBindKeys on a Debian-based system (e.g. any ubuntu-based one), run:
+install XBindKeys on CachyOS/Arch, run:
 
-    sudo apt install -y xbindkeys
+    sudo pacman -S xbindkeys
 
-Additionally, you may want to use the graphical user interface, which can be installed by:
+Additionally, you may want to use the graphical user interface, which can be installed from the AUR (using paru as you have it installed):
 
-    sudo apt install -y xbindkeys-config
+    paru -S xbindkeys-config
 
 XBindKeys uses a configuration file .xbindkeysrc, located in your home directory, that can either
 be modified using a text editor or using xbindkeys-config; both methods are supporting the Apex
