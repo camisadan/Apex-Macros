@@ -1,31 +1,18 @@
-# 1) Place this to /etc/udev/hwdb.d/90-apex.hwdb
-# 2) sudo systemd-hwdb update (or sudo udevadm hwdb --update on older systems)
-# 3) sudo udevadm control --reload
-
-#keyboard:usb:v1038p120[02]*
 evdev:input:b0003v1038p120[0268A]*
-# L Keys
- KEYBOARD_KEY_0700a8=prog1
- KEYBOARD_KEY_0700a9=prog2
- KEYBOARD_KEY_0700aa=prog3
- KEYBOARD_KEY_0700ab=prog4
-# up/left and up/right
-# KEYBOARD_KEY_0700ac=221
-# KEYBOARD_KEY_0700ad=220
-# MX Keys (left)
- KEYBOARD_KEY_0700e8=config
- KEYBOARD_KEY_0700e9=homepage
- KEYBOARD_KEY_0700ea=refresh
- KEYBOARD_KEY_0700eb=exit
- KEYBOARD_KEY_0700ec=move
- KEYBOARD_KEY_0700ed=edit
- KEYBOARD_KEY_0700ee=scrollup
- KEYBOARD_KEY_0700ef=scrolldown
- KEYBOARD_KEY_0700f0=kpleftparen
- KEYBOARD_KEY_0700f1=kprightparen
-# M Keys (top)
-# Note: F13-F24 (scancodes 0700f4-0700ff) often map to XF86LaunchX keys in X11/Wayland.
-# This is expected behavior; use input-remapper or xbindkeys to handle them.
+ KEYBOARD_KEY_0700a8=macro11
+ KEYBOARD_KEY_0700a9=macro12
+ KEYBOARD_KEY_0700aa=macro13
+ KEYBOARD_KEY_0700ab=macro14
+ KEYBOARD_KEY_0700e8=macro1
+ KEYBOARD_KEY_0700e9=macro2
+ KEYBOARD_KEY_0700ea=macro3
+ KEYBOARD_KEY_0700eb=macro4
+ KEYBOARD_KEY_0700ec=macro5
+ KEYBOARD_KEY_0700ed=macro6
+ KEYBOARD_KEY_0700ee=macro7
+ KEYBOARD_KEY_0700ef=macro8
+ KEYBOARD_KEY_0700f0=macro9
+ KEYBOARD_KEY_0700f1=macro10
  KEYBOARD_KEY_0700f4=f13
  KEYBOARD_KEY_0700f5=f14
  KEYBOARD_KEY_0700f6=f15
@@ -38,10 +25,3 @@ evdev:input:b0003v1038p120[0268A]*
  KEYBOARD_KEY_0700fd=f22
  KEYBOARD_KEY_0700fe=f23
  KEYBOARD_KEY_0700ff=f24
-# Media Keys (right, from top to bottom)
- KEYBOARD_KEY_0c00e9=volumeup
- KEYBOARD_KEY_0c00ea=volumedown
- KEYBOARD_KEY_0c00e2=mute
- KEYBOARD_KEY_0c00b6=previoussong
- KEYBOARD_KEY_0c00b5=nextsong
- KEYBOARD_KEY_0c00cd=playpause
