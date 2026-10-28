@@ -1,3 +1,34 @@
+
+> # *Fork Info*
+>  
+><sub>By Forked Camisadan, Repository by [Gibtnix](https://github.com/Gibtnix/Apex-Macros)</sub>
+> 
+> Hello. I made this fork as the original repo for some reason binds the left hand keys to random buttons, and also manually binds the media keys for some reason despite the fact media keys aren't handled in the way the ``.hwdb`` expects.
+>
+> Now, L1-4 are bound to KEY_MACRO11-14 meaning they have their very own keycodes (supported on most Linux kernels, tested on CachyOS Mainline.), ``MX1-10`` Are bound to ``KEY_MACRO1-10``, and ``M1-12`` are bound to ``F13-24``. **Note, this fork does not fix the base Wayland / X11 behaviours of F13-24 firing things like emoji pickers and random DE-specific behaviours.**
+>
+> ### KDE Users:
+>
+> Any unwanted ``F13-24`` behaviour can be disabled by doing the following:
+>
+> - Go to System Settings
+> - Go to Keyboard -> Keyboard
+> - In the top right, click the Key Bindings button
+> - In the Key Bindings menu, tick the Configure Keyboard Options button
+> - Search for F13 / go to the Function Keys category
+> - Enable 'Use F13-F24 as usual function keys'
+>
+> Note that the fork makes no major changes, just modifies the .hwdb and makes any ``sudo udevadm control --reload`` also run:
+> ```
+> sudo udevadm trigger --action=change --subsystem-match=input --sysname-match='event*'
+>sudo udevadm settle
+> ```
+> Meaning the changes apply instantly without a reboot.
+> Hooray!
+
+
+# Apex-Macros
+
 # General
 
 Apex-Macros is a minimalistic tool to enable (or disable) the additional macro keys of the
