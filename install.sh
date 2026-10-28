@@ -73,6 +73,9 @@ if (sudo apex-macros enable); then
     fi
     sudo udevadm control --reload
 
+    sudo udevadm trigger --action=change --subsystem-match=input --sysname-match='event*'
+    sudo udevadm settle
+
     echo 'The macro keys were successfully enabled.'
     echo "To manually enable / disable the macro keys, run 'apex-macros enable' or 'apex-macros disable', respectively."
     echo "If you want to enable the autostart, run 'autostart.sh', to uninstall 'apex-macros' run 'uninstall.sh'."
